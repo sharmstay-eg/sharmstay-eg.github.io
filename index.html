@@ -148,6 +148,11 @@ var io=("IntersectionObserver" in window)?new IntersectionObserver(function(en){
 document.documentElement.classList.add("js");
 try{localStorage.removeItem("lang");localStorage.removeItem("language")}catch(e){}
 if(location.hash){history.replaceState(null,"",location.pathname+location.search)}
-document.addEventListener("submit",function(ev){var f=ev.target;if(!f.classList.contains("pf"))return;ev.preventDefault();var p=f.getAttribute("data-msg").split("|");var v=function(n){return(f.elements[n].value||"").trim()};var r=f.querySelector("input[type=radio]:checked");var t=p[0];if(v("hotel"))t+="\n"+p[1]+": "+v("hotel");if(v("day"))t+="\n"+p[2]+": "+v("day");if(v("tm"))t+="\n"+p[6]+": "+v("tm");t+="\n"+p[3]+": "+v("g");if(r)t+="\n"+p[4]+": "+r.value;t+="\n"+p[5];window.open("https://wa.me/201027105615?text="+encodeURIComponent(t),"_blank","noopener")});
+document.addEventListener("submit",function(ev){var f=ev.target;if(!f.classList.contains("pf"))return;ev.preventDefault();var p=f.getAttribute("data-msg").split("|");var v=function(n){return(f.elements[n].value||"").trim()};var r=f.querySelector("input[type=radio]:checked");var t=p[0];if(v("hotel"))t+="\n"+p[1]+": "+v("hotel");if(v("day"))t+="\n"+p[2]+": "+v("day");if(v("tm"))t+="\n"+p[6]+": "+v("tm");t+="\n"+p[3]+": "+v("g");if(r)t+="\n"+p[4]+": "+r.value;t+="\n"+p[5]+"\nRef: "+(window.SRC||"Website");window.open("https://wa.me/201027105615?text="+encodeURIComponent(t),"_blank","noopener")});
 
+
+var SRCS={ig:"Instagram",tg:"Telegram",fb:"Facebook",ta:"TripAdvisor",rd:"Reddit",web:"Website"};
+var q=(new URLSearchParams(location.search).get("src")||"").toLowerCase();var SRC=SRCS.hasOwnProperty(q)?SRCS[q]:SRCS.web;window.SRC=SRC;
+var GR={en:"Hello! I would like to know about spa programs in Sharm el Sheikh.",ru:"Здравствуйте! Хочу узнать о спа-программах в Шарм-эль-Шейхе.",ar:"أهلاً! عايز أعرف عن برامج السبا في شرم الشيخ."};
+document.querySelectorAll('a[href^="https://wa.me/"]').forEach(function(a){var lg=a.closest(".lang");var id=lg?lg.id:"en";a.href="https://wa.me/201027105615?text="+encodeURIComponent(GR[id]+"\nRef: "+SRC)});
 L.forEach(function(x){document.getElementById("b-"+x).onclick=function(){s(x);window.scrollTo(0,0)}});s("en");</script></body></html>
